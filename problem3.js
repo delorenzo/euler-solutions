@@ -1,26 +1,30 @@
 //What is the largest prime factor of the number 600851475143 ?
 
+var knownPrimes = {};
+
 var isPrime = function(num) {
+    if (knownPrimes[num]) {
+		return true;
+	}
 	var count = 2;
 	while (count < num) {
-		if (num % count == 0) {
+		if (num % count === 0) {
 			return false;
 		}
 		count++;
 	}
+	knownPrimes[num] = true;
 	return true;
-}
+};
 
-var count = 3;
 var bigNum = 600851475143;
-var largestPrime = 0;
-while (count < bigNum) {
-	if (bigNum % count == 0) {
+var count = bigNum;
+while (count > 0) {
+	if (bigNum % count === 0) {
 		if (isPrime(count)) {
-			largestPrime = count;
+            console.log(count);
+            break;
 		}
 	}
-	count++;
+	count--;
 }
-
-console.log(largestPrime);

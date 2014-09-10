@@ -2,19 +2,19 @@
 
 var sum = 0;
 var current = 0;
-var 1back = 1;
-var 2back = 0;
+var previous = 1;
+var twoBack = 0;
 
 while (current <= 4000000) {
 
-	if (current % 2 == 0) {
+	if (current % 2 === 0) {
 		sum += current;
 	}
 
-	2back = 1back;
-	1back = current;
+	twoBack = previous;
+	previous = current;
 
-	current = 1back + 2back;
+	current = previous + twoBack;
 }
 
 console.log(sum);
