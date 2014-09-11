@@ -11,7 +11,7 @@ function largestPrime(num)
     return getMaxOfArray(primeFactors(num));
 }
 
-//should run in O(n) for worst case (when N is a prime number)
+//should run in O(sqrt(n))
 //takes advantage of the fact that you can often divide by the same number 
 //several times... as in powers of 2 :)
 //so all the numbers you find will be guaranteed to be prime!
@@ -24,6 +24,16 @@ function primeFactors (num) {
 			num /= denominator;
 		}
 		denominator++;
+		//here we have a useful property
+		//of a pair of factors, the smallest factor is guaranteed to be 
+		//less than or equal to the square root of the number. 
+		//(helps reduce the iterations in the case of a prime number)
+		if (denominator * denominator > num) {
+			if (num > 1) {
+				factors.push(num);
+				break;
+			}
+		}
 	}
 	return factors;
 }
