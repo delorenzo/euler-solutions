@@ -1,30 +1,33 @@
 //What is the largest prime factor of the number 600851475143 ?
 
-var knownPrimes = {};
-
-var isPrime = function(num) {
-    if (knownPrimes[num]) {
-		return true;
-	}
-	var count = 2;
-	while (count < num) {
-		if (num % count === 0) {
-			return false;
-		}
-		count++;
-	}
-	knownPrimes[num] = true;
-	return true;
-};
-
-var bigNum = 600851475143;
-var count = bigNum;
-while (count > 0) {
-	if (bigNum % count === 0) {
-		if (isPrime(count)) {
-            console.log(count);
-            break;
-		}
-	}
-	count--;
+//helper functions:
+//gives us the max of an array
+function getMaxOfArray(numArray) {
+    return Math.max.apply(null, numArray);
 }
+//gives us the max prime
+function largestPrime(num)
+{
+    return getMaxOfArray(primeFactors(num));
+}
+
+//should run in O(n) for worst case (when N is a prime number)
+//takes advantage of the fact that you can often divide by the same number 
+//several times... as in powers of 2 :)
+//so all the numbers you find will be guaranteed to be prime!
+function primeFactors (num) {
+	var factors = [];
+	var largestPrime = 0;
+	var denominator = 2;
+	while (num > 1) {
+		while (num % denominator === 0) {
+			factors.push(denominator);
+			num /= denominator;
+		}
+		denominator++;
+	}
+	return factors;
+}
+
+console.log(largestPrime(600851475143));
+
