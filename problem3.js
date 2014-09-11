@@ -16,8 +16,7 @@ function largestPrime(num)
 //several times... as in powers of 2 :)
 //so all the numbers you find will be guaranteed to be prime!
 function primeFactors (num) {
-	var factors = [];
-	var largestPrime = 0;
+	var factors = [1];
 	var denominator = 2;
 	while (num > 1) {
 		while (num % denominator === 0) {
