@@ -28,11 +28,9 @@ function primeFactors (num) {
 		//of a pair of factors, the smallest factor is guaranteed to be 
 		//less than or equal to the square root of the number. 
 		//(helps reduce the iterations in the case of a prime number)
-		if (denominator * denominator > num) {
-			if (num > 1) {
-				factors.push(num);
-				break;
-			}
+		if ((denominator * denominator > num) && (num > 1)) {
+			factors.push(num);
+			break;
 		}
 	}
 	return factors;
